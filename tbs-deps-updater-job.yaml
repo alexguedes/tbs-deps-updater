@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: tbs-deps-updater-job
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: copy-configmap
+        image: busybox
+        command: ['/bin/sh', '-c', 'cp /tmp/configmap/* /config/']
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config
+        - name: tbs-deps-updater-configmap
+          mountPath: /tmp/configmap
+      containers:
+      - image: alexguedes/tbs-deps-updater:0.1
+        name: tbs-deps-updater
+        resources: {}
+        volumeMounts:
+        - mountPath: /config
+          name: config-volume
+        command:
+          - /bin/sh
+          - -c
+          - tbs-update-deps
+      volumes:
+      - name: config-volume
+        emptyDir: {}
+      - name: tbs-deps-updater-configmap
+        configMap:
+          name: tbs-deps-updater-configmap
+      restartPolicy: Never
+  backoffLimit: 2

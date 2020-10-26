@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+  pivnetconfig: |-
+    profiles:
+    - name: default
+      api_token: YOUR_PIVNET_API_TOKEN
+      host: https://network.pivotal.io
+  config.json: |-
+    {
+      "auths": {
+        "YOUR_CONTAINER_REPO_URL": {
+          "auth": "YOUR_CONTAINER_REPO_AUTH"
+        },
+        "registry.pivotal.io": {
+          "auth": "YOUR_PIVOTAL_REGISTRY_AUTH"
+        }
+      }
+    }
+  kubeconfig: |-
+    apiVersion: v1
+    clusters:
+    INSERT_YOUR_KUBECONFIG
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: tbs-deps-updater-configmap
