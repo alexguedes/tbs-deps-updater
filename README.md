@@ -3,7 +3,7 @@
 **DISCLAIMER: Use it at your own risk. Not supported by the VMware Tanzu team or myself.**
 
 Open the `tbs-deps-updater-configmap.yaml` and configure the following:
-* **pivnetconfig** - Repalace the API_TOKEN variable with your Tanzu Network (a.k.a. PivNet) token.
+* **pivnetconfig** - Replace the API_TOKEN variable with your Tanzu Network (a.k.a. PivNet) token.
 * **config.json** - Using your docker cli, make sure you log in to the Tanzu/Pivotal Harbor Repo and to the repository where you store your TBS installation dependencies and copy the contents from your ~/.docker/config.json file.
 * **kubeconfig** - Replace the contents with your kubeconfig file with access to the Kubernetes where you have Tanzu Build Service installed.
 
